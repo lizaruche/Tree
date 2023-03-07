@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32802.440
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tree", "Tree\Tree.csproj", "{BFE545DC-A304-4BE2-BF4E-EA1ACBB0FC78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumboxColtrols", "NumboxColtrols\NumboxColtrols.csproj", "{3F60C1CC-667F-4568-AF68-FA25529B3E45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFE545DC-A304-4BE2-BF4E-EA1ACBB0FC78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE545DC-A304-4BE2-BF4E-EA1ACBB0FC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFE545DC-A304-4BE2-BF4E-EA1ACBB0FC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFE545DC-A304-4BE2-BF4E-EA1ACBB0FC78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F60C1CC-667F-4568-AF68-FA25529B3E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F60C1CC-667F-4568-AF68-FA25529B3E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F60C1CC-667F-4568-AF68-FA25529B3E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F60C1CC-667F-4568-AF68-FA25529B3E45}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B5ECB893-8CD9-4A15-A0B2-1A006F9D2882}
+	EndGlobalSection
+EndGlobal
