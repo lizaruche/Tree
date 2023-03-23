@@ -132,15 +132,17 @@ namespace Tree
             {
                 case Restaurant _:
                     DeleteRestaurant();
+                    treeData.SelectedNode.Remove();
                     break;
                 case Category _:
                     DeleteCategory();
+                    LoadData();
                     break;
                 case Dish _:
                     DeleteDish();
+                    treeData.SelectedNode.Remove();
                     break;
             }
-            treeData.SelectedNode.Remove();
         }
         private void DeleteRestaurant()
         {
@@ -269,14 +271,84 @@ namespace Tree
             switch (treeData.SelectedNode)
             {
                 case Restaurant _:
-                    DeleteRestaurant();
+                    using (var c = new CreateUpdate("Изменить Ресторан"))
+                    {
+                        if (c.ShowDialog() == DialogResult.OK)
+                        {
+                            EditRestaurant(c.name);
+                            LoadData();
+                            c.Close();
+                        }
+                        else c.Close();
+                    }
                     break;
                 case Category _:
-                    DeleteCategory();
+                    using (var c = new CreateUpdate("Изменить Категорию"))
+                    {
+                        if (c.ShowDialog() == DialogResult.OK)
+                        {
+                            EditCategory(c.name);
+                            LoadData();
+                            c.Close();
+                        }
+                        else c.Close();
+                    }
                     break;
                 case Dish _:
-                    DeleteDish();
+                    using (var c = new CreateUpdate("Изменить Блюдо", true))
+                    {
+                        if (c.ShowDialog() == DialogResult.OK)
+                        {
+                            EditDish(c.name, c.price);
+                            LoadData();
+                            c.Close();
+                        }
+                        else c.Close();
+                    }
                     break;
+            }
+        }
+        private void EditDish(string name, int price)
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                conn.Open();
+                var sql = @"update Restaurants.dbo.dishes 
+                            set name=@name, price=@price
+                            where id=@dish_id;";
+                var cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@dish_id", ((Dish)treeData.SelectedNode).id);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@price", price);
+                cmd.ExecuteNonQuery();
+            }
+        }
+        private void EditRestaurant(string name)
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                conn.Open();
+                var sql = @"update Restaurants.dbo.restaurants 
+                            set name=@name
+                            where id=@rest_id;";
+                var cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@rest_id", ((Restaurant)treeData.SelectedNode).id);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.ExecuteNonQuery();
+            }
+        }
+        private void EditCategory(string name)
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                conn.Open();
+                var sql = @"update Restaurants.dbo.categories 
+                            set name=@name
+                            where id=@category_id;";
+                var cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@category_id", ((Category)treeData.SelectedNode).id);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.ExecuteNonQuery();
             }
         }
     }
